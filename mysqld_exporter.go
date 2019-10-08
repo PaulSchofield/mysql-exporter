@@ -21,7 +21,7 @@ import (
 	"gopkg.in/alecthomas/kingpin.v2"
 	"gopkg.in/ini.v1"
 
-	"github.com/PaulSchofield/mysql_exporter/collector"
+	"github.com/PaulSchofield/mysql-exporter/collector"
 )
 
 var (
