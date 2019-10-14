@@ -24,7 +24,7 @@ import (
 
 const globalStatusRequestRatesQuery = `
 	SELECT
-		SUM(variable_value) AS SUM_REQUEST_RATE
+		SUM(variable_value) AS TOTAL_REQUEST_RATE
 		FROM information_schema.global_status
 		WHERE variable_name IN ('com_select', 'com_update', 'com_delete', 'com_insert');
 	`
@@ -66,12 +66,12 @@ func (ScrapeGlobalStatusRequestRatesSum) Scrape(ctx context.Context, db *sql.DB,
 	defer globalStatusRequestRatesRows.Close()
 
 	var (
-		sum  uint64
+		total  uint64
 	)
 
 	for globalStatusRequestRatesRows.Next() {
 		if err := globalStatusRequestRatesRows.Scan(
-			&sum,
+			&total,
 		); err != nil {
 			return err
 		}
