@@ -53,7 +53,7 @@ func (ScrapeGlobalStatusRequestRatesSum) Help() string {
 
 // Version of MySQL from which scraper is available.
 func (ScrapeGlobalStatusRequestRatesSum) Version() float64 {
-	return 5.6
+	return 5.1
 }
 
 // Scrape collects data from database connection and sends it over channel as prometheus metric.
@@ -66,22 +66,12 @@ func (ScrapeGlobalStatusRequestRatesSum) Scrape(ctx context.Context, db *sql.DB,
 	defer globalStatusRequestRatesRows.Close()
 
 	var (
-		total, createdTmpDiskTables, createdTmpTables, errors uint64
-		lockTime, noGoodIndexUsed, noIndexUsed, rowsAffected  uint64
-		rowsExamined, rowsSent, selectFullJoin                uint64
-		selectFullRangeJoin, selectRange, selectRangeCheck    uint64
-		selectScan, sortMergePasses, sortRange, sortRows      uint64
-		sortScan, timerWait, warnings                         uint64
+		sum  uint64
 	)
 
 	for globalStatusRequestRatesRows.Next() {
 		if err := globalStatusRequestRatesRows.Scan(
-			&total, &createdTmpDiskTables, &createdTmpTables, &errors,
-			&lockTime, &noGoodIndexUsed, &noIndexUsed, &rowsAffected,
-			&rowsExamined, &rowsSent, &selectFullJoin,
-			&selectFullRangeJoin, &selectRange, &selectRangeCheck,
-			&selectScan, &sortMergePasses, &sortRange, &sortRows,
-			&sortScan, &timerWait, &warnings,
+			&sum,
 		); err != nil {
 			return err
 		}
