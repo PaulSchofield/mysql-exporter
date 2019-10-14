@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -50,6 +49,7 @@ var (
 
 // scrapers lists all possible collection methods and if they should be enabled by default
 var scrapers = map[collector.Scraper]bool{
+	collector.ScrapePerfSchemaQueryErrorRateSum{}:         true,
 	collector.ScrapeGlobalStatusRequestRatesSum{}:         true,
 	collector.ScrapeGlobalStatus{}:                        true,
 	collector.ScrapeGlobalVariables{}:                     true,
