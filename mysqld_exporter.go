@@ -48,7 +48,7 @@ var (
 	dsn string
 )
 
-// scrapers lists all possible collection methods and if they should be enabled by default.
+// scrapers lists all possible collection methods and if they should be enabled by default
 var scrapers = map[collector.Scraper]bool{
 	collector.ScrapeGlobalStatusRequestRatesSum{}:         true,
 	collector.ScrapeGlobalStatus{}:                        true,
