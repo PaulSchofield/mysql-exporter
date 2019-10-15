@@ -49,6 +49,7 @@ var (
 
 // scrapers lists all possible collection methods and if they should be enabled by default
 var scrapers = map[collector.Scraper]bool{
+	collector.ScrapeGlobalStatusSaturationSum{}:           true,
 	collector.ScrapeGlobalStatusUtilizationSum{}:          true,
 	collector.ScrapePerfSchemaQueryLatencyRateSum{}:       true,
 	collector.ScrapePerfSchemaQueryErrorRateSum{}:         true,
