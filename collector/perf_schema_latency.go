@@ -57,7 +57,7 @@ func (ScrapePerfSchemaQueryLatencyRateSum) Version() float64 {
 }
 
 // Scrape collects data from database connection and sends it over channel as prometheus metric.
-func (ScrapePerfSchemaQueryLatencyRateSum) Scrape(ctx context.Context, db *sql.DB, ch chan<- prometheus.Metric) Latency {
+func (ScrapePerfSchemaQueryLatencyRateSum) Scrape(ctx context.Context, db *sql.DB, ch chan<- prometheus.Metric) error {
 	// Timers here are returned in picoseconds.
 	perfSchemaQueryLatencyRateRows, err := db.QueryContext(ctx, queryLatencyRateQuery)
 	if err != nil {
